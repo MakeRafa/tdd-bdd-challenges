@@ -25,9 +25,21 @@ it("should say hello", function() {
 // 4. Finally see if you would like to refactor your code at all.
 // This is called "Red-Green-Refactor"
 // ========================================================
+it("should return the area", function() {
+  const w = 10
+  const h = 10
+  const area = utils.area(w, h)
+  expect(area).to.be.a('number')
+  expect(area).to.equal(100)
+})
 
-
-
+it("should return the perimeter", function() {
+  const w = 10
+  const h = 10
+  const perimeter = utils.perimeter(w, h)
+  expect(perimeter).to.be.a('number')
+  expect(perimeter).to.equal(40)
+})
 
 // ========================================================
 // Level 2 Challenges
@@ -50,13 +62,41 @@ it("Should create a new (object) Item with name and price", function() {
   expect(item).to.have.property("quantity", 1)
 })
 
-it("Should return an array containing all items in cart")
+it("Should return an array containing all items in cart", function() {
+  const cart = utils.getShoppingCart()
+  expect(cart).to.be.a("array")
+})
 
-it("Should add a new item to the shopping cart")
+it("Should add a new item to the shopping cart", function() {
+  const item = utils.createItem("apple", 0.99)
+  const item2 = utils.createItem("orange", 0.99)
 
-it("Should return the number of items in the cart")
+  const cart = utils.getShoppingCart()
 
-it("Should remove items from cart")
+  utils.addItemToCart(item)
+  utils.addItemToCart(item2)
+  // expect([1, 2, 3]).to.have.members([2, 1, 3]);
+  expect(cart).to.have.members([item, item2]);
+  expect(cart).to.have.members([item, item2]);
+
+  // expect(cart).to.have.members([item2])
+
+})
+
+it("Should return the number of items in the cart", function() {
+  // should be similar to adding to a cart but we just check the length
+  const item = utils.createItem("apple", 0.99)
+  const cart = utils.getShoppingCart()
+
+  utils.addItemToCart(item)
+  expect(cart).to.have.lengthOf(1)
+})
+
+// it("Should remove items from cart", function() {
+//   // use splice property to remove
+
+// })
+
 
 // ========================================================
 // Stretch Challenges
